@@ -22,14 +22,9 @@
 - `name: String`
 - `description: String`
 - `price: Number`
-- `category: String`
+- `category: ObjectId`
 - `stock: Number`
 - `imageUrl: String`
-
-## Users Schema (MongoDB)
-- `username: String`
-- `password: String`
-- `email: String`
 
 ## Orders Schema (MongoDB)
 - `order_id: String`
@@ -38,4 +33,17 @@
 - `quantity: Number`
 - `order_date: Date`
 
+## Categories Schema (MongoDB)
+- `name: String`
+- `description: String`
 -------------------------------------------------------------------------------------
+
+# GitHub Repository
+
+**GitHub Repo Link:** https://github.com/ankitdave677/ecommerce-project
+Added **hs-conestoga** as a collaborator
+
+--------------------------------------------------------------------------------------
+
+# Visual Representation of Database Schema
+![Database Schema](./DatabaseSchema.png)
