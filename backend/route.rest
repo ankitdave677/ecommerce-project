@@ -1,0 +1,32 @@
+### Get All Products
+GET http://localhost:3000/api/products
+Accept: application/json
+
+### Create a New Product
+POST http://localhost:3000/api/products
+Content-Type: application/json
+
+{
+  "name": "iWatch Series 8",
+  "description": "A new watch",
+  "price": 1000,
+  "category": "iWatch",
+  "stock": 10,          
+  "imageUrl": "http://example.com/image.jpg"
+}
+
+### Get Product by ID
+GET http://localhost:3000/api/products/66a15707a399d9d3c085a3b3
+Accept: application/json
+
+### Update a Product
+PUT http://localhost:3000/api/products/66a15707a399d9d3c085a3b3
+Content-Type: application/json
+
+{
+  "name": "Updated Product",
+  "price": 699
+}
+
+### Delete a Product
+DELETE http://localhost:3000/api/products/66a15707a399d9d3c085a3b3
