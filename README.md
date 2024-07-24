@@ -41,8 +41,6 @@
 # GitHub Repository
 
 **GitHub Repo Link:** https://github.com/ankitdave677/ecommerce-project
-Added **hs-conestoga** as a collaborator
-
 --------------------------------------------------------------------------------------
 
 # Visual Representation of Database Schema
