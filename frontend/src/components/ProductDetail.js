@@ -1,28 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 function ProductDetail() {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
     useEffect(() => {
         axios.get(`/api/products/${id}`)
-            .then(response => {
-                setProduct(response.data);
-                setLoading(false);
-            })
-            .catch(error => {
-                setError('Error fetching product details');
-                setLoading(false);
-            });
+            .then(response => setProduct(response.data))
+            .catch(error => console.error('Error fetching product details:', error));
     }, [id]);
 
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>{error}</div>;
-    if (!product) return <div>Product not found</div>;
+    if (!product) return <div>Loading...</div>;
 
     return (
         <div className="product-detail">

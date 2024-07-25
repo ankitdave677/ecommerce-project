@@ -29,7 +29,6 @@ mongoose.connect(process.env.MONGODB_URI)
 // Routes
 app.use('/api/products', productRoutes);
 app.use('/api/categories', categoryRoutes);
-app.use('/api/orders', orderRoutes);
 
 // Start the server
 app.listen(port, () => {

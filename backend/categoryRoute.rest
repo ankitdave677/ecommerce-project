@@ -1,0 +1,26 @@
+### Get All Categories
+GET http://localhost:3001/api/categories
+Accept: application/json
+
+### Create a New Category
+POST http://localhost:3001/api/categories
+Content-Type: application/json
+
+{
+  "name": "Android Watches"
+}
+
+### Get Category by ID
+GET http://localhost:3001/api/categories/{categoryId}
+Accept: application/json
+
+### Update a Category
+PUT http://localhost:3001/api/categories/66a2907f724ae190c00fdaf1
+Content-Type: application/json
+
+{
+  "name": "Smart Watches"
+}
+
+### Delete a Category
+DELETE http://localhost:3001/api/categories/{categoryId}

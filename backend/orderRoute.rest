@@ -1,0 +1,28 @@
+### Get All Orders
+GET http://localhost:3001/api/orders
+Accept: application/json
+
+### Create a New Order
+POST http://localhost:3001/api/orders
+Content-Type: application/json
+
+{
+  "user_id": "user_id_here",
+  "product_id": "product_id_here",
+  "quantity": 1
+}
+
+### Get Order by ID
+GET http://localhost:3001/api/orders/{orderId}
+Accept: application/json
+
+### Update an Order
+PUT http://localhost:3001/api/orders/{orderId}
+Content-Type: application/json
+
+{
+  "quantity": 2
+}
+
+### Delete an Order
+DELETE http://localhost:3001/api/orders/{orderId}
