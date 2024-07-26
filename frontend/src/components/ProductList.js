@@ -28,7 +28,7 @@ function ProductList() {
                         <h3><Link to={`/product/${product._id}`}>{product.name}</Link></h3>
                         <p>{product.description}</p>
                         <p>${product.price}</p>
-                        <img src={product.imageUrl} alt={product.name} />
+                        {product.imageUrl && <img src={`http://localhost:3001/${product.imageUrl}`} alt={product.name} />}
                         <button onClick={() => addToCart(product)}>Add to Cart</button>
                     </div>
                 ))

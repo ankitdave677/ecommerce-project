@@ -1,6 +1,3 @@
-// Student Name: Ankit Dave
-// Student Number: 8959634
-
 // Import required packages
 const express = require('express');
 const mongoose = require('mongoose');
@@ -20,10 +17,13 @@ const port = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
+// Serve static files
+app.use('/uploads', express.static('uploads'));
+
 // Connect to MongoDB using the provided URI
 mongoose.connect(process.env.MONGODB_URI)
-.then(() => console.log('Connected to MongoDB'))
-.catch(err => console.error('Could not connect to MongoDB', err));
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.error('Could not connect to MongoDB', err));
 
 // Routes
 app.use('/api/products', productRoutes);

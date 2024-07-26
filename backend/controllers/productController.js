@@ -1,8 +1,10 @@
-const Product = require('../models/products');
+const Product = require('../models/product');
 
 // CREATE - Add a new product
 exports.createProduct = async (req, res) => {
-    const product = new Product(req.body);
+    const { name, description, price, category, stock } = req.body;
+    const imageUrl = req.file ? req.file.path : null;
+    const product = new Product({ name, description, price, category, stock, imageUrl });
     try {
         await product.save();
         res.status(201).send(product);
@@ -38,8 +40,12 @@ exports.getProductById = async (req, res) => {
 // UPDATE - Update a product by its ID
 exports.updateProduct = async (req, res) => {
     const _id = req.params.id;
+    const updates = req.body;
+    if (req.file) {
+        updates.imageUrl = req.file.path;
+    }
     try {
-        const product = await Product.findByIdAndUpdate(_id, req.body, { new: true, runValidators: true });
+        const product = await Product.findByIdAndUpdate(_id, updates, { new: true, runValidators: true });
         if (!product) {
             return res.status(404).send();
         }

@@ -1,4 +1,3 @@
-// Import the Category model
 const Category = require('../models/category');
 
 // CREATE - Add a new category

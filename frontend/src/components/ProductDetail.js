@@ -28,7 +28,7 @@ function ProductDetail() {
     return (
         <div className="product-detail-container">
             <div className="product-image">
-                <img src={product.imageUrl} alt={product.name} />
+                <img src={`http://localhost:3001/${product.imageUrl}`} alt={product.name} />
             </div>
             <div className="product-info">
                 <h1>{product.name}</h1>

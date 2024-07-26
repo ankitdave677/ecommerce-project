@@ -12,7 +12,7 @@ Content-Type: application/json
   "price": 500,
   "category": "iWatch",
   "stock": 100,          
-  "imageUrl": "http://example.com/image.jpg"
+  "imageUrl": "uploads/iWatch8.jpg"
 }
 
 ### Get Product by ID
