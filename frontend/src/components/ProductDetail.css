@@ -5,8 +5,12 @@
     padding: 20px;
 }
 
+.product-image {
+    max-width: 500px; 
+}
+
 .product-image img {
-    max-width: 100%;
+    width: 100%; 
     height: auto;
     border-radius: 10px;
 }

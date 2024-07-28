@@ -13,7 +13,7 @@ function ProductDetail() {
 
     useEffect(() => {
         console.log(`Fetching product with id ${id}`);
-        axios.get(`http://localhost:3001/api/products/${id}`)
+        axios.get(`${process.env.REACT_APP_BASE_URL}/api/products/${id}`)
             .then(response => {
                 console.log('Product fetched:', response.data);
                 setProduct(response.data);
@@ -28,7 +28,7 @@ function ProductDetail() {
     return (
         <div className="product-detail-container">
             <div className="product-image">
-                <img src={`http://localhost:3001/${product.imageUrl}`} alt={product.name} />
+                <img src={`${process.env.REACT_APP_BASE_URL}/${product.imageUrl}`} alt={product.name} />
             </div>
             <div className="product-info">
                 <h1>{product.name}</h1>
