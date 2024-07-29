@@ -6,6 +6,7 @@ import ProductDetail from './components/ProductDetail';
 import ProductList from './components/ProductList';
 import HomePage from './components/HomePage';
 import NavBar from './components/NavBar';
+
 import { CartProvider } from './context/CartContext';
 
 function App() {
