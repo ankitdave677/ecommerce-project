@@ -19,7 +19,7 @@ function CategoryList() {
                     <h3>{product.name}</h3>
                     <p>{product.description}</p>
                     <p>${product.price}</p>
-                    <img src={product.imageUrl} alt={product.name} />
+                    <img src={ process.env.REACT_APP_BASE_URL + "/" + product.imageUrl} alt={product.name} />
                 </div>
             ))}
         </div>

@@ -28,7 +28,7 @@ function ProductDetail() {
     return (
         <div className="product-detail-container">
             <div className="product-image">
-                <img src={`${process.env.REACT_APP_BASE_URL}/${product.imageUrl}`} alt={product.name} />
+                <img src={ process.env.REACT_APP_BASE_URL + "/" + product.imageUrl} alt={product.name} />
             </div>
             <div className="product-info">
                 <h1>{product.name}</h1>
