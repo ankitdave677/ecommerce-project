@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
 import './ProductDetail.css';
 
@@ -10,6 +9,7 @@ function ProductDetail() {
     const [product, setProduct] = useState(null);
     const { addToCart } = useContext(CartContext);
     const [quantity, setQuantity] = useState(1);
+    const navigate = useNavigate();
 
     useEffect(() => {
         console.log(`Fetching product with id ${id}`);
@@ -23,12 +23,17 @@ function ProductDetail() {
             });
     }, [id]);
 
+    const handleAddToCart = () => {
+        addToCart(product, parseInt(quantity));
+        navigate('/cart');
+    };
+
     if (!product) return <div>Loading...</div>;
 
     return (
         <div className="product-detail-container">
             <div className="product-image">
-                <img src={ process.env.REACT_APP_BASE_URL + "/" + product.imageUrl} alt={product.name} />
+                <img src={`${process.env.REACT_APP_BASE_URL}/${product.imageUrl}`} alt={product.name} />
             </div>
             <div className="product-info">
                 <h1>{product.name}</h1>
@@ -55,7 +60,7 @@ function ProductDetail() {
                 <p className="product-stock">{product.stock > 0 ? 'In Stock' : 'Out of Stock'}</p>
                 <button 
                     className="add-to-cart-button"
-                    onClick={() => addToCart({ ...product, quantity })}
+                    onClick={handleAddToCart} 
                     disabled={product.stock === 0}
                 >
                     Add to Cart

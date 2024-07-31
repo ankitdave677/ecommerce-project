@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { CartContext } from '../context/CartContext';
 
 function ProductList() {
     const [products, setProducts] = useState([]);
     const { addToCart } = useContext(CartContext);
-
+    const navigate = useNavigate(); 
     useEffect(() => {
         console.log('Fetching all products...');
         axios.get('http://localhost:3001/api/products')
@@ -20,6 +20,11 @@ function ProductList() {
             });
     }, []);
 
+    const handleAddToCart = (product) => {
+        addToCart(product);
+        navigate('/cart'); 
+    };
+
     return (
         <div className="product-list">
             {products.length > 0 ? (
@@ -29,7 +34,7 @@ function ProductList() {
                         <p>{product.description}</p>
                         <p>${product.price}</p>
                         {product.imageUrl && <img src={`http://localhost:3001/${product.imageUrl}`} alt={product.name} />}
-                        <button onClick={() => addToCart(product)}>Add to Cart</button>
+                        <button onClick={() => handleAddToCart(product)}>Add to Cart</button> 
                     </div>
                 ))
             ) : (
