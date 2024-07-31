@@ -8,7 +8,7 @@ function HomePage() {
     const [categories, setCategories] = useState([]);
     const [products, setProducts] = useState([]);
     const { addToCart } = useContext(CartContext);
-    const navigate = useNavigate(); // Import useNavigate
+    const navigate = useNavigate();
 
     useEffect(() => {
         console.log('Fetching categories...');

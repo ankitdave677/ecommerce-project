@@ -14,7 +14,7 @@ exports.createProduct = async (req, res) => {
 // READ ALL - Retrieve all products
 exports.getProducts = async (req, res) => {
     try {
-        const products = await Product.find().populate('category');  
+        const products = await Product.find().populate('category', 'name');
         res.status(200).send(products);
     } catch (error) {
         res.status(500).send(error);
@@ -25,7 +25,7 @@ exports.getProducts = async (req, res) => {
 exports.getProductById = async (req, res) => {
     const _id = req.params.id;
     try {
-        const product = await Product.findById(_id).populate('category');  
+        const product = await Product.findById(_id).populate('category', 'name');
         if (!product) {
             return res.status(404).send();
         }
@@ -39,7 +39,7 @@ exports.getProductById = async (req, res) => {
 exports.updateProduct = async (req, res) => {
     const _id = req.params.id;
     try {
-        const product = await Product.findByIdAndUpdate(_id, req.body, { new: true, runValidators: true });
+        const product = await Product.findByIdAndUpdate(_id, req.body, { new: true, runValidators: true }).populate('category', 'name');
         if (!product) {
             return res.status(404).send();
         }
