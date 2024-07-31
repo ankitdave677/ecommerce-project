@@ -2,9 +2,7 @@ const Product = require('../models/product');
 
 // CREATE - Add a new product
 exports.createProduct = async (req, res) => {
-    const { name, description, price, category, stock } = req.body;
-    const imageUrl = req.file ? req.file.path : null;
-    const product = new Product({ name, description, price, category, stock, imageUrl });
+    const product = new Product(req.body);
     try {
         await product.save();
         res.status(201).send(product);
@@ -16,7 +14,7 @@ exports.createProduct = async (req, res) => {
 // READ ALL - Retrieve all products
 exports.getProducts = async (req, res) => {
     try {
-        const products = await Product.find();
+        const products = await Product.find().populate('category');  
         res.status(200).send(products);
     } catch (error) {
         res.status(500).send(error);
@@ -27,7 +25,7 @@ exports.getProducts = async (req, res) => {
 exports.getProductById = async (req, res) => {
     const _id = req.params.id;
     try {
-        const product = await Product.findById(_id);
+        const product = await Product.findById(_id).populate('category');  
         if (!product) {
             return res.status(404).send();
         }
@@ -40,12 +38,8 @@ exports.getProductById = async (req, res) => {
 // UPDATE - Update a product by its ID
 exports.updateProduct = async (req, res) => {
     const _id = req.params.id;
-    const updates = req.body;
-    if (req.file) {
-        updates.imageUrl = req.file.path;
-    }
     try {
-        const product = await Product.findByIdAndUpdate(_id, updates, { new: true, runValidators: true });
+        const product = await Product.findByIdAndUpdate(_id, req.body, { new: true, runValidators: true });
         if (!product) {
             return res.status(404).send();
         }

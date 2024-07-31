@@ -3,13 +3,17 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { CartContext } from '../context/CartContext';
 
-function ProductList() {
+function ProductList({ categoryId }) {  
     const [products, setProducts] = useState([]);
     const { addToCart } = useContext(CartContext);
     const navigate = useNavigate(); 
+
     useEffect(() => {
-        console.log('Fetching all products...');
-        axios.get('http://localhost:3001/api/products')
+        console.log('Fetching products...');
+        const url = categoryId 
+            ? `${process.env.REACT_APP_BASE_URL}/api/products?category=${categoryId}` 
+            : `${process.env.REACT_APP_BASE_URL}/api/products`;
+        axios.get(url)
             .then(response => {
                 console.log('Products fetched:', response.data);
                 setProducts(response.data);
@@ -18,10 +22,10 @@ function ProductList() {
                 console.error('Error fetching products:', error);
                 console.log('Error details:', error.response);
             });
-    }, []);
+    }, [categoryId]);
 
     const handleAddToCart = (product) => {
-        addToCart(product);
+        addToCart(product, 1); 
         navigate('/cart'); 
     };
 
@@ -34,7 +38,7 @@ function ProductList() {
                         <p>{product.description}</p>
                         <p>${product.price}</p>
                         {product.imageUrl && <img src={`http://localhost:3001/${product.imageUrl}`} alt={product.name} />}
-                        <button onClick={() => handleAddToCart(product)}>Add to Cart</button> 
+                        <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
                     </div>
                 ))
             ) : (

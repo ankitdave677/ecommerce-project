@@ -1,4 +1,5 @@
 const Category = require('../models/category');
+const Product = require('../models/product');
 
 // CREATE - Add a new category
 exports.createCategory = async (req, res) => {
@@ -58,6 +59,17 @@ exports.deleteCategory = async (req, res) => {
             return res.status(404).send();
         }
         res.status(200).send(category);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+};
+
+// FETCH PRODUCTS BY CATEGORY - Retrieve all products in a specific category
+exports.getProductsByCategory = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const products = await Product.find({ category: id });
+        res.status(200).send(products);
     } catch (error) {
         res.status(500).send(error);
     }

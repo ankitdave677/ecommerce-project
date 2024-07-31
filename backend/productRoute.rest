@@ -7,25 +7,27 @@ POST http://localhost:3001/api/products
 Content-Type: application/json
 
 {
-  "name": "iWatch Series 5",
+  "name": "Title Supreme Watch",
   "description": "A new watch",
-  "price": 500,
-  "category": "iWatch",
-  "stock": 100,          
+  "price": 299,
+  "category": "66a29074724ae190c00fdaef",  
+  "stock": 20,
   "imageUrl": "uploads/iWatch8.jpg"
 }
 
 ### Get Product by ID
-GET http://localhost:3001/api/products/66a15707a399d9d3c085a3b3
+GET http://localhost:3001/api/products/66aa8b2df19b88f379906931
 Accept: application/json
 
 ### Update a Product
-PUT http://localhost:3001/api/products/66a15707a399d9d3c085a3b3
+PUT http://localhost:3001/api/products/66aa8b2df19b88f379906931
 Content-Type: application/json
 
 {
-  "name": "Updated Product",
+  "name": "Title Supreme Watch",
+  "category": "66aa8b2df19b88f379906931",
   "price": 699
+ 
 }
 
 ### Delete a Product
