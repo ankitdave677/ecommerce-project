@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
 
-function Cart() {
+function CartPage() {
     const { cartItems, removeFromCart, updateQuantity } = useContext(CartContext);
 
     return (
@@ -26,10 +26,10 @@ function Cart() {
                     </div>
                 ))
             ) : (
-                <p>No items in the cart</p>
+                <p>Your cart is empty</p>
             )}
         </div>
     );
 }
 
-export default Cart;
+export default CartPage;
