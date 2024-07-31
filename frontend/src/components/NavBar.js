@@ -1,23 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import './NavBar.css';
 
 function NavBar() {
-    const [categories, setCategories] = useState([]);
-
-    useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BASE_URL}/api/categories`)
-            .then(response => setCategories(response.data))
-            .catch(error => console.error('Error fetching categories:', error));
-    }, []);
-
     return (
-        <nav>
-            <ul>
+        <nav className="navbar">
+            <ul className="navbar-links">
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/products">Shop</Link></li>
                 <li><Link to="/cart">Cart</Link></li>
-                
             </ul>
         </nav>
     );

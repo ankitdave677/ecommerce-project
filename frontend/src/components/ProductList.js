@@ -38,7 +38,6 @@ function ProductList({ categoryId }) {
                         <h3><Link to={`/product/${product._id}`}>{product.name}</Link></h3>
                         <p>{product.description}</p>
                         <p>${product.price}</p>
-                        <p>Category: {product.category ? product.category.name : 'Uncategorized'}</p>
                         {product.imageUrl && <img src={`${process.env.REACT_APP_BASE_URL}/${product.imageUrl}`} alt={product.name} />}
                         <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
                     </div>

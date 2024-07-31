@@ -1,5 +1,3 @@
-/* ProductList.css */
-
 .product-list {
     display: flex;
     justify-content: space-around;
@@ -8,7 +6,7 @@
 }
 
 .product-item {
-    background-color: #f9f9f9;
+    background-color: #dcd6f7;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -18,13 +16,13 @@
 
 .product-item h3 {
     font-size: 1.5em;
-    color: #007bff;
+    color: #424874;
     margin-bottom: 10px;
 }
 
 .product-item p {
     font-size: 1em;
-    color: #555;
+    color: #424874;
     margin-bottom: 10px;
 }
 
@@ -35,8 +33,8 @@
 }
 
 button {
-    background-color: #007bff;
-    color: white;
+    background-color: #a6b1e1;
+    color: #f4eeff;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -46,5 +44,5 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #424874;
 }
