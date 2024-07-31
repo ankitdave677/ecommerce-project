@@ -4,10 +4,10 @@ import axios from 'axios';
 import { CartContext } from '../context/CartContext';
 import './ProductList.css';
 
-function ProductList({ categoryId }) {  
+function ProductList({ categoryId }) {
     const [products, setProducts] = useState([]);
     const { addToCart } = useContext(CartContext);
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     useEffect(() => {
         console.log('Fetching products...');
@@ -26,8 +26,8 @@ function ProductList({ categoryId }) {
     }, [categoryId]);
 
     const handleAddToCart = (product) => {
-        addToCart(product, 1); 
-        navigate('/cart'); 
+        addToCart(product, 1);
+        navigate('/cart');
     };
 
     return (
@@ -38,7 +38,7 @@ function ProductList({ categoryId }) {
                         <h3><Link to={`/product/${product._id}`}>{product.name}</Link></h3>
                         <p>{product.description}</p>
                         <p>${product.price}</p>
-                        {product.imageUrl && <img src={`${process.env.REACT_APP_BASE_URL}/${product.imageUrl}`} alt={product.name} />}
+                        {product.imageUrl && <img src={`http://localhost:3001/${product.imageUrl}`} alt={product.name} />}
                         <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
                     </div>
                 ))

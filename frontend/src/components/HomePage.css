@@ -1,4 +1,3 @@
-/* HomePage.css */
 .home-page {
     padding: 20px;
     width: auto;
@@ -17,8 +16,8 @@ h2 {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 15px;  /* Reduced gap between category items */
-    margin-bottom: 20px;  /* Reduced margin at the bottom */
+    gap: 15px;  
+    margin-bottom: 20px;  
 }
 
 .category-item {
@@ -41,13 +40,13 @@ h2 {
 .product-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 10px;  /* Reduced gap between products */
+    gap: 15px;  
     width: 100%;
 }
 
 .product-item {
-    background-color: #dcd6f7;
-    padding: 15px;  /* Reduced padding */
+    background-color: #424874;
+    padding: 10px; 
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -60,20 +59,20 @@ h2 {
 
 .product-item h3 {
     font-size: 1.5em;
-    color: #424874;
-    margin-bottom: 5px;  /* Reduced margin */
+    color: #f4eeff;
+    margin-bottom: 5px; 
 }
 
 .product-item p {
     font-size: 1em;
-    color: #424874;
-    margin-bottom: 5px;  /* Reduced margin */
+    color: #f4eeff;
+    margin-bottom: 5px; 
 }
 
 .product-item img {
     max-width: 100%;
     border-radius: 10px;
-    margin-bottom: 5px;  /* Reduced margin */
+    margin-bottom: 5px;  
 }
 
 button {
@@ -88,5 +87,6 @@ button {
 }
 
 button:hover {
-    background-color: #424874;
+    background-color: #f4eeff;
+    color: #424874;
 }

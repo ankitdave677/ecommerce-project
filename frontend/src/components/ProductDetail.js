@@ -12,37 +12,51 @@ function ProductDetail() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log(`Fetching product with id ${id}`);
-        axios.get(`${process.env.REACT_APP_BASE_URL}/api/products/${id}`)
-            .then(response => {
+        const fetchProduct = async () => {
+            try {
+                console.log(`Fetching product with id ${id}`);
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/api/products/${id}`);
                 console.log('Product fetched:', response.data);
                 setProduct(response.data);
-            })
-            .catch(error => {
+            } catch (error) {
                 console.error('Error fetching product details:', error);
-            });
+            }
+        };
+
+        fetchProduct();
     }, [id]);
 
     const handleAddToCart = () => {
-        addToCart(product, parseInt(quantity));
-        navigate('/cart');
+        if (product) {
+            addToCart(product, parseInt(quantity));
+            navigate('/cart');
+        }
     };
 
-    if (!product) return <div>Loading...</div>;
+    if (!product) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div className="product-detail-container">
             <div className="product-image">
-                <img src={`${process.env.REACT_APP_BASE_URL}/${product.imageUrl}`} alt={product.name} />
+                {product.imageUrl ? (
+                    <img src={`${process.env.REACT_APP_BASE_URL}/${product.imageUrl}`} alt={product.name} />
+                ) : (
+                    <p>No image available</p>
+                )}
             </div>
             <div className="product-info">
                 <h1>{product.name}</h1>
-                <p className="product-brand">{product.brand}</p>
-                <div className="product-rating">
-                    <p>{product.rating} Stars ({product.reviews} Reviews)</p>
-                </div>
+                {product.brand && <p className="product-brand">{product.brand}</p>}
+                {product.rating && product.reviews && (
+                    <div className="product-rating">
+                        <p>{product.rating} Stars ({product.reviews} Reviews)</p>
+                    </div>
+                )}
                 <p className="product-price">${product.price}</p>
                 <p className="product-description">{product.description}</p>
+                {product.category && <p>Category: {product.category.name}</p>}
                 <div className="product-quantity">
                     <label htmlFor="quantity">Net Qty :</label>
                     <select 
