@@ -8,11 +8,11 @@ Content-Type: application/json
 
 {
   "name": "Title Supreme Watch",
-  "description": "A new watch",
+  "description": "This sleek and modern smartwatch comes with a variety of features including fitness tracking, notifications, and customizable watch faces.",
   "price": 299,
   "category": "66a29074724ae190c00fdaef",  
   "stock": 20,
-  "imageUrl": "uploads/iWatch8.jpg"
+  "imageUrl": "uploads/SmartWatch.png",
 }
 
 ### Get Product by ID
@@ -20,14 +20,10 @@ GET http://localhost:3001/api/products/66aa8b2df19b88f379906931
 Accept: application/json
 
 ### Update a Product
-PUT http://localhost:3001/api/products/66aa8b2df19b88f379906931
+PUT http://localhost:3001/api/products/66aae76d1a549eec63bce240
 Content-Type: application/json
-
 {
-  "name": "Title Supreme Watch",
-  "category": "66aa8b2df19b88f379906931",
-  "price": 699
- 
+  "name": "Titan Supreme Watch",
 }
 
 ### Delete a Product
