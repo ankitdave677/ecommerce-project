@@ -7,6 +7,7 @@
 .cart-page h2 {
     text-align: center;
     margin-bottom: 20px;
+    color: #10443e;
 }
 
 .cart-items {
@@ -34,12 +35,15 @@
 
 .cart-item-details p {
     margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 20px; 
 }
 
 .cart-item-details .cart-item-name {
     font-size: 1.2em;
     font-weight: bold;
-    color: #007bff;
+    color: #10443e;
     text-decoration: none;
 }
 
@@ -50,6 +54,7 @@
 .cart-item-price {
     font-size: 1.2em;
     font-weight: bold;
+    color: #10443e;
 }
 
 .cart-summary {
@@ -59,11 +64,12 @@
 
 .cart-summary h3 {
     margin-bottom: 20px;
+    color: #10443e;
 }
 
 .checkout-button {
-    background-color: #ffcc00;
-    color: black;
+    background-color: #62a29a;
+    color: #ede4d6;
     border: none;
     padding: 10px 20px;
     font-size: 1em;
@@ -72,5 +78,5 @@
 }
 
 .checkout-button:hover {
-    background-color: #e6b800;
+    background-color: #10443e;
 }

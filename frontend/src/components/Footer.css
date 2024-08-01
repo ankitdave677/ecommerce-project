@@ -16,12 +16,12 @@
 }
 
 .footer-section h3 {
-    color: #ffcc00;
+    color: #62a29a;
     margin-bottom: 10px;
 }
 
 .footer-section p {
-    color: #dcd6f7;
+    color: #ede4d6;
 }
 
 .social-links {
@@ -35,16 +35,16 @@
 }
 
 .social-links a {
-    color: #dcd6f7;
+    color: #ede4d6;
     text-decoration: none;
 }
 
 .footer-bottom {
     margin-top: 20px;
-    border-top: 1px solid #424874;
+    border-top: 1px solid #ede4d6;
     padding-top: 10px;
 }
 
 .footer-bottom p {
-    color: #dcd6f7;
+    color: #ede4d6;
 }

@@ -31,7 +31,7 @@ function CartPage() {
                                             </option>
                                         ))}
                                     </select>
-                                    <button onClick={() => removeFromCart(item._id)}>Delete</button>
+                                    <button onClick={() => removeFromCart(item._id)}>Remove From Cart</button>
                                 </p>
                             </div>
                             <div className="cart-item-price">

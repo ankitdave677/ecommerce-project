@@ -1,9 +1,8 @@
-/* NavBar.css */
 .navbar {
     padding: 10px 20px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 }
 
 .navbar-brand {
@@ -25,7 +24,7 @@
 }
 
 .navbar-links li a {
-    color: #f4eeff;
+    color: #ede4d6;
     padding: 10px 15px;
     border-radius: 5px;
     font-family: 'Arial', sans-serif;
@@ -34,5 +33,5 @@
 }
 
 .navbar-links li a:hover {
-    background-color: #a6b1e1;
+    background-color: #10443e;
 }

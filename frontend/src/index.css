@@ -42,13 +42,13 @@ nav ul li a {
   color: white;
   text-decoration: none;
   padding: 8px 16px;
-  background-color: #61dafb;
+  background-color: #62a29a;
   border-radius: 4px;
   transition: background-color 0.3s;
 }
 
 nav ul li a:hover {
-  background-color: #21a1f1;
+  background-color: #10443e;
 }
 
 .product-list {

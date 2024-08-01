@@ -25,12 +25,15 @@
 } */
 
 .App-header {
-  background-color: #282c34;
+  background-color: #1A1A1A;
   padding: 20px;
   color: white;
   text-align: center;
 }
 
+img.logo {
+  width: 100px;
+}
 
 .App-link {
   color: #61dafb;

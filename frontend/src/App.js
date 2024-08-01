@@ -15,7 +15,6 @@ function App() {
         <CartProvider>
             <Router>
                 <header className="App-header">
-                    <h1>E-Commerce by Ankit Dave</h1>
                     <NavBar />
                 </header>
                 <Routes>
