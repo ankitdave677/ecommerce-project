@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Cart.css';
 
-function CartPage() {
+function Cart() {
     const { cartItems, removeFromCart, updateQuantity } = useContext(CartContext);
+    const navigate = useNavigate();
 
     const getTotalPrice = () => {
         return cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
@@ -46,11 +47,11 @@ function CartPage() {
             {cartItems.length > 0 && (
                 <div className="cart-summary">
                     <h3>Subtotal ({cartItems.length} items): ${getTotalPrice()}</h3>
-                    <button className="checkout-button">Proceed to Checkout</button>
+                    <button className="checkout-button" onClick={() => navigate('/checkout')}>Proceed to Checkout</button>
                 </div>
             )}
         </div>
     );
 }
 
-export default CartPage;
+export default Cart;
