@@ -6,8 +6,9 @@ import './AdminDashboard.css';
 function AdminDashboard() {
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
-    const [newProduct, setNewProduct] = useState({ name: '', description: '', price: '', category: '', stock: '', imageUrl: '' });
+    const [newProduct, setNewProduct] = useState({ name: '', description: '', price: '', category: '', stock: '' });
     const [newCategory, setNewCategory] = useState({ name: '' });
+    const [imageFile, setImageFile] = useState(null);  
     const [editingProduct, setEditingProduct] = useState(null);
     const [editingCategory, setEditingCategory] = useState(null);
 
@@ -43,28 +44,57 @@ function AdminDashboard() {
         setNewCategory({ ...newCategory, [name]: value });
     };
 
+    const handleImageChange = (e) => {
+        setImageFile(e.target.files[0]);  
+    };
+
     const handleProductSubmit = async (e) => {
-        e.preventDefault();
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('name', newProduct.name);
+    formData.append('description', newProduct.description);
+    formData.append('price', newProduct.price);
+    formData.append('category', newProduct.category);
+    formData.append('stock', newProduct.stock);
+    if (newProduct.image) {
+        formData.append('image', newProduct.image); // Assuming newProduct.image is the file object
+    }
+
+    try {
         if (editingProduct) {
-            await axios.put(`${process.env.REACT_APP_BASE_URL}/api/products/${editingProduct._id}`, newProduct);
+            await axios.put(`${process.env.REACT_APP_BASE_URL}/api/products/${editingProduct._id}`, formData, {
+                headers: { 'Content-Type': 'multipart/form-data' },
+            });
             setEditingProduct(null);
         } else {
-            await axios.post(`${process.env.REACT_APP_BASE_URL}/api/products`, newProduct);
+            await axios.post(`${process.env.REACT_APP_BASE_URL}/api/products`, formData, {
+                headers: { 'Content-Type': 'multipart/form-data' },
+            });
         }
-        setNewProduct({ name: '', description: '', price: '', category: '', stock: '', imageUrl: '' });
         fetchProducts();
-    };
+    } catch (error) {
+        console.error('Failed to save product', error);
+    }
+
+    setNewProduct({ name: '', description: '', price: '', category: '', stock: '', image: null });
+};
+
 
     const handleCategorySubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`${process.env.REACT_APP_BASE_URL}/api/categories`, newCategory);
+            if (editingCategory) {
+                await axios.put(`${process.env.REACT_APP_BASE_URL}/api/categories/${editingCategory._id}`, newCategory);
+                setEditingCategory(null);
+            } else {
+                await axios.post(`${process.env.REACT_APP_BASE_URL}/api/categories`, newCategory);
+            }
+            setNewCategory({ name: '' });
             fetchCategories();
         } catch (error) {
-            console.error('There was an error creating the category!', error);
+            console.error('There was an error with the category operation!', error);
         }
     };
-    
 
     const handleProductEdit = (product) => {
         setNewProduct(product);
@@ -92,7 +122,7 @@ function AdminDashboard() {
 
             <div className="admin-section">
                 <h3>Products</h3>
-                <form onSubmit={handleProductSubmit}>
+                <form onSubmit={handleProductSubmit} encType="multipart/form-data">
                     <label>Name</label>
                     <input type="text" name="name" value={newProduct.name} onChange={handleProductChange} required />
                     <label>Description</label>
@@ -108,8 +138,8 @@ function AdminDashboard() {
                     </select>
                     <label>Stock</label>
                     <input type="number" name="stock" value={newProduct.stock} onChange={handleProductChange} required />
-                    <label>Image URL</label>
-                    <input type="text" name="imageUrl" value={newProduct.imageUrl} onChange={handleProductChange} />
+                    <label>Image</label>
+                    <input type="file" name="image" onChange={handleImageChange} accept="image/*" />
                     <button type="submit">{editingProduct ? 'Update Product' : 'Add Product'}</button>
                 </form>
 
@@ -121,6 +151,13 @@ function AdminDashboard() {
                             <p>Price: ${product.price}</p>
                             <p>Category: {categories.find(cat => cat._id === product.category)?.name}</p>
                             <p>Stock: {product.stock}</p>
+                            {product.imageUrl && (
+                                <img 
+                                    src={`${process.env.REACT_APP_BASE_URL}/${product.imageUrl}`} 
+                                    alt={product.name} 
+                                    style={{ maxWidth: '100px', maxHeight: '100px' }} 
+                                />
+                            )}
                             <button onClick={() => handleProductEdit(product)}>Edit</button>
                             <button onClick={() => handleProductDelete(product._id)}>Delete</button>
                         </div>

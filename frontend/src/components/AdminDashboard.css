@@ -15,6 +15,13 @@
     font-weight: bold;
 }
 
+.admin-dashboard .product-item img {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
 .admin-section {
     margin-bottom: 50px;
 }
