@@ -5,6 +5,7 @@ import CategoryPage from './components/CategoryPage';
 import ProductDetail from './components/ProductDetail';
 import Cart from './components/Cart';
 import CheckoutPage from './components/CheckoutPage';
+import ThankYouPage from './components/ThankYouPage';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import { CartProvider } from './context/CartContext';
@@ -23,6 +24,7 @@ function App() {
                     <Route path="/product/:id" element={<ProductDetail />} />
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/checkout" element={<CheckoutPage />} />
+                    <Route path="/thank-you" element={<ThankYouPage />} />
                 </Routes>
                 <Footer />
             </Router>

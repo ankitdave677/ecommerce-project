@@ -1,0 +1,83 @@
+.thank-you-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ede4d6; /* Match background color with the checkout page */
+}
+
+.thank-you-content {
+    text-align: center;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    color: #10443e; 
+}
+
+.thank-you-content h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #10443e; 
+}
+
+.thank-you-content p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: #555; 
+}
+
+.order-details {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.order-details h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #10443e; 
+}
+
+.order-details h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #32745c; 
+}
+
+.order-details ul {
+    list-style: none;
+    padding: 0;
+}
+
+.order-details ul li {
+    font-size: 1em;
+    margin-bottom: 5px;
+    color: #10443e; 
+}
+
+.back-home-button {
+    background-color: #62a29a; 
+    color: #ede4d6;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.back-home-button:hover {
+    background-color: #10443e; 
+}
+
+.thank-you-content a {
+    color: #32745c; 
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.thank-you-content a:hover {
+    color: #10443e; 
+}
