@@ -2,7 +2,15 @@ const Product = require('../models/product');
 
 // CREATE - Add a new product
 exports.createProduct = async (req, res) => {
-    const product = new Product(req.body);
+    const productData = {
+        name: req.body.name,
+        description: req.body.description,
+        price: req.body.price,
+        category: req.body.category,
+        stock: req.body.stock,
+        imageUrl: req.file ? `/uploads/${req.file.filename}` : '', 
+    };
+    const product = new Product(productData);
     try {
         await product.save();
         res.status(201).send(product);
@@ -11,54 +19,27 @@ exports.createProduct = async (req, res) => {
     }
 };
 
-// READ ALL - Retrieve all products
-exports.getProducts = async (req, res) => {
-    try {
-        const products = await Product.find().populate('category', 'name');
-        res.status(200).send(products);
-    } catch (error) {
-        res.status(500).send(error);
-    }
-};
-
-// READ ONE - Retrieve a single product by its ID
-exports.getProductById = async (req, res) => {
-    const _id = req.params.id;
-    try {
-        const product = await Product.findById(_id).populate('category', 'name');
-        if (!product) {
-            return res.status(404).send();
-        }
-        res.status(200).send(product);
-    } catch (error) {
-        res.status(500).send(error);
-    }
-};
-
 // UPDATE - Update a product by its ID
 exports.updateProduct = async (req, res) => {
-    const _id = req.params.id;
+    const productData = {
+        name: req.body.name,
+        description: req.body.description,
+        price: req.body.price,
+        category: req.body.category,
+        stock: req.body.stock,
+    };
+
+    if (req.file) {
+        productData.imageUrl = req.file.path; 
+    }
+
     try {
-        const product = await Product.findByIdAndUpdate(_id, req.body, { new: true, runValidators: true }).populate('category', 'name');
+        const product = await Product.findByIdAndUpdate(req.params.id, productData, { new: true, runValidators: true });
         if (!product) {
             return res.status(404).send();
         }
         res.status(200).send(product);
     } catch (error) {
         res.status(400).send(error);
-    }
-};
-
-// DELETE - Delete a product by its ID
-exports.deleteProduct = async (req, res) => {
-    const _id = req.params.id;
-    try {
-        const product = await Product.findByIdAndDelete(_id);
-        if (!product) {
-            return res.status(404).send();
-        }
-        res.status(200).send(product);
-    } catch (error) {
-        res.status(500).send(error);
     }
 };

@@ -6,6 +6,8 @@ import ProductDetail from './components/ProductDetail';
 import Cart from './components/Cart';
 import CheckoutPage from './components/CheckoutPage';
 import ThankYouPage from './components/ThankYouPage';
+import AdminLogin from './components/AdminLogin';
+import AdminDashboard from './components/AdminDashboard';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import { CartProvider } from './context/CartContext';
@@ -25,6 +27,8 @@ function App() {
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/checkout" element={<CheckoutPage />} />
                     <Route path="/thank-you" element={<ThankYouPage />} />
+                    <Route path="/admin-login" element={<AdminLogin />} /> 
+                    <Route path="/admin-dashboard" element={<AdminDashboard />} /> 
                 </Routes>
                 <Footer />
             </Router>
