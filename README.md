@@ -91,8 +91,13 @@ PORT=5000
 - \`ProductDetail.js\`: Displays detailed information about a specific product.
 - \`ProductList.js\`: Displays a list of products in a selected category.
 - \`Cart.js\`: Displays the items in the shopping cart.
+- \`CheckoutPage.js\`: Displays the checkout form for users to enter their shipping and payment information.
+- \`ThankYouPage.js\`: Displays an order confirmation message along with the order details.
 - \`NavBar.js\`: Displays the navigation bar with links to Home, Shop, and Cart.
 - \`Footer.js\`: Displays the footer of the website.
+- \`AdminLogin.js\`: Allows admin to login using credentials.
+- \`AdminDashboard.js\`: Admin can view, add, edit, and delete products and categories.
+
 
 ---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -105,3 +110,5 @@ PORT=5000
 # Visual Representation of Database Schema
 
 ![Database Schema](./DatabaseSchema.png)
+
+---------------------------------------------------------------------------------------------------------------------------------------
