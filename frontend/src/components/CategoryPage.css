@@ -14,8 +14,8 @@
 .product-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 20px;
+    justify-content: center!important;
+    gap: 20px important;
 }
 
 .product-item {
@@ -23,7 +23,7 @@
     padding: 20px;
     border: 1px solid #32745c;
     border-radius: 10px;
-    width: 280px; 
+    width: 300px; 
     margin: 10px;
     text-align: center;
     color: #10443e;

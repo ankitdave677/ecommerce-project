@@ -6,9 +6,8 @@ import './AdminDashboard.css';
 function AdminDashboard() {
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
-    const [newProduct, setNewProduct] = useState({ name: '', description: '', price: '', category: '', stock: '' });
+    const [newProduct, setNewProduct] = useState({ name: '', description: '', price: '', category: '', stock: '', image: null });
     const [newCategory, setNewCategory] = useState({ name: '' });
-    const [imageFile, setImageFile] = useState(null);  
     const [editingProduct, setEditingProduct] = useState(null);
     const [editingCategory, setEditingCategory] = useState(null);
 
@@ -45,40 +44,39 @@ function AdminDashboard() {
     };
 
     const handleImageChange = (e) => {
-        setImageFile(e.target.files[0]);  
+        setNewProduct({ ...newProduct, image: e.target.files[0] });
     };
 
     const handleProductSubmit = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append('name', newProduct.name);
-    formData.append('description', newProduct.description);
-    formData.append('price', newProduct.price);
-    formData.append('category', newProduct.category);
-    formData.append('stock', newProduct.stock);
-    if (newProduct.image) {
-        formData.append('image', newProduct.image); // Assuming newProduct.image is the file object
-    }
-
-    try {
-        if (editingProduct) {
-            await axios.put(`${process.env.REACT_APP_BASE_URL}/api/products/${editingProduct._id}`, formData, {
-                headers: { 'Content-Type': 'multipart/form-data' },
-            });
-            setEditingProduct(null);
-        } else {
-            await axios.post(`${process.env.REACT_APP_BASE_URL}/api/products`, formData, {
-                headers: { 'Content-Type': 'multipart/form-data' },
-            });
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('name', newProduct.name);
+        formData.append('description', newProduct.description);
+        formData.append('price', newProduct.price);
+        formData.append('category', newProduct.category);
+        formData.append('stock', newProduct.stock);
+        if (newProduct.image) {
+            formData.append('image', newProduct.image);
         }
-        fetchProducts();
-    } catch (error) {
-        console.error('Failed to save product', error);
-    }
 
-    setNewProduct({ name: '', description: '', price: '', category: '', stock: '', image: null });
-};
+        try {
+            if (editingProduct) {
+                await axios.put(`${process.env.REACT_APP_BASE_URL}/api/products/${editingProduct._id}`, formData, {
+                    headers: { 'Content-Type': 'multipart/form-data' },
+                });
+                setEditingProduct(null);
+            } else {
+                await axios.post(`${process.env.REACT_APP_BASE_URL}/api/products`, formData, {
+                    headers: { 'Content-Type': 'multipart/form-data' },
+                });
+            }
+            fetchProducts();
+        } catch (error) {
+            console.error('Failed to save product', error);
+        }
 
+        setNewProduct({ name: '', description: '', price: '', category: '', stock: '', image: null });
+    };
 
     const handleCategorySubmit = async (e) => {
         e.preventDefault();
@@ -97,7 +95,10 @@ function AdminDashboard() {
     };
 
     const handleProductEdit = (product) => {
-        setNewProduct(product);
+        setNewProduct({
+            ...product,
+            image: null, // Reset image to allow new upload
+        });
         setEditingProduct(product);
     };
 
@@ -107,13 +108,21 @@ function AdminDashboard() {
     };
 
     const handleProductDelete = async (id) => {
-        await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/products/${id}`);
-        fetchProducts();
+        try {
+            await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/products/${id}`);
+            fetchProducts();
+        } catch (error) {
+            console.error('Failed to delete product', error);
+        }
     };
 
     const handleCategoryDelete = async (id) => {
-        await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/categories/${id}`);
-        fetchCategories();
+        try {
+            await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/categories/${id}`);
+            fetchCategories();
+        } catch (error) {
+            console.error('Failed to delete category', error);
+        }
     };
 
     return (

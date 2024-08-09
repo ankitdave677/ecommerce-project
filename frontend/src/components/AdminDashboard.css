@@ -98,7 +98,7 @@ form button:hover {
     border: 1px solid #32745c;
     border-radius: 8px; 
     color: #10443e;
-    width: 220px; 
+    width: 220px!important; 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
     transition: transform 0.2s, box-shadow 0.2s; 
 }
