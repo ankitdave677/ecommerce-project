@@ -12,6 +12,7 @@ import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import { CartProvider } from './context/CartContext';
 import './App.css';
+import ProductList from './components/ProductList';
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                     <Route path="/" element={<HomePage />} />
                     <Route path="/categories/:id" element={<CategoryPage />} />
                     <Route path="/product/:id" element={<ProductDetail />} />
+                    <Route path="/products" element={<ProductList />} />
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/checkout" element={<CheckoutPage />} />
                     <Route path="/thank-you" element={<ThankYouPage />} />

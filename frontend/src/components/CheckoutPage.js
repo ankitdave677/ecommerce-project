@@ -15,7 +15,7 @@ function CheckoutPage() {
 
     const [paymentInfo, setPaymentInfo] = useState({
         cardNumber: '1234 5678 9012 3456',
-        cardName: 'John Doe',
+        cardName: 'Ankit Dave',
         expiryDate: '12/25',
         cvv: '123'
     });

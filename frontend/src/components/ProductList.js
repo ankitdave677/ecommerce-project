@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { CartContext } from '../context/CartContext';
-import './ProductList.css';
 
 function ProductList({ categoryId }) {
     const [products, setProducts] = useState([]);
