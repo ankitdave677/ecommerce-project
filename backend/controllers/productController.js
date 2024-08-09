@@ -1,107 +1,91 @@
 const Product = require('../models/product');
-const Category = require('../models/category');
-const multer = require('multer');
-const path = require('path');
 
-// Configure multer for file storage
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/');
-  },
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
-  }
-});
-  
-  const upload = multer({ storage }).single('image');
-  
-  const createProduct = async (req, res) => {
+// CREATE - Add a new product
+exports.createProduct = async (req, res) => {
     try {
-      const { name, description, price, category, stock } = req.body;
-      const imageUrl = req.file ? `uploads/${req.file.filename}` : '';
-  
-      const categoryExists = await Category.findById(category);
-      if (!categoryExists) {
-        return res.status(400).json({ message: 'Invalid category' });
-      }
-  
-      const product = new Product({ name, description, price, category, stock, imageUrl });
-      await product.save();
-      res.status(201).json(product);
-    } catch (err) {
-      console.error('Error creating product:', err);
-      res.status(400).json({ message: err.message });
+        const productData = {
+            name: req.body.name,
+            description: req.body.description,
+            price: req.body.price,
+            category: req.body.category,
+            stock: req.body.stock,
+            imageUrl: req.file ? `uploads/${req.file.filename}` : '',
+        };
+
+        const product = new Product(productData);
+        await product.save();
+        res.status(201).send(product);
+    } catch (error) {
+        res.status(400).send({ error: 'Failed to create product', details: error.message });
     }
-  };
-  
-  const updateProduct = async (req, res) => {
+};
+
+// UPDATE - Update a product by its ID
+exports.updateProduct = async (req, res) => {
     try {
-      const { name, description, price, category, stock } = req.body;
-      const updateData = { name, description, price, category, stock };
-  
-      if (req.file) {
-        updateData.imageUrl = `uploads/${req.file.filename}`;
-      }
-  
-      const categoryExists = await Category.findById(category);
-      if (!categoryExists) {
-        return res.status(400).json({ message: 'Invalid category' });
-      }
-  
-      const product = await Product.findByIdAndUpdate(req.params.id, updateData, { new: true });
-      if (!product) {
-        return res.status(404).json({ message: 'Product not found' });
-      }
-  
-      res.json(product);
-    } catch (err) {
-      console.error('Error updating product:', err);
-      res.status(400).json({ message: err.message });
-    }
-  };
-  
+        const productData = {
+            name: req.body.name,
+            description: req.body.description,
+            price: req.body.price,
+            category: req.body.category,
+            stock: req.body.stock,
+        };
 
-const deleteProduct = async (req, res) => {
-  const { id } = req.params;
+        if (req.file) {
+            productData.imageUrl = `uploads/${req.file.filename}`;
+        }
 
-  try {
-    const product = await Product.findByIdAndDelete(id);
-    if (!product) {
-      return res.status(404).json({ message: 'Product not found' });
+        const product = await Product.findByIdAndUpdate(req.params.id, productData, {
+            new: true,
+            runValidators: true,
+        });
+
+        if (!product) {
+            return res.status(404).send({ error: 'Product not found' });
+        }
+
+        res.status(200).send(product);
+    } catch (error) {
+        res.status(400).send({ error: 'Failed to update product', details: error.message });
     }
-    res.json({ message: 'Product deleted successfully' });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
 };
 
-const getProducts = async (req, res) => {
-  try {
-    const products = await Product.find().populate('category', 'name');
-    res.json(products);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
+// DELETE - Delete a product by its ID
+exports.deleteProduct = async (req, res) => {
+    try {
+        const product = await Product.findByIdAndDelete(req.params.id);
 
-const getProduct = async (req, res) => {
-  const { id } = req.params;
-  try {
-    const product = await Product.findById(id).populate('category', 'name');
-    if (!product) {
-      return res.status(404).json({ message: 'Product not found' });
+        if (!product) {
+            return res.status(404).send({ error: 'Product not found' });
+        }
+
+        res.status(200).send({ message: 'Product deleted successfully' });
+    } catch (error) {
+        res.status(500).send({ error: 'Failed to delete product', details: error.message });
     }
-    res.json(product);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
 };
 
-module.exports = {
-  createProduct,
-  updateProduct,
-  deleteProduct,
-  getProducts,
-  getProduct,
-  upload
+// GET - Retrieve all products
+exports.getProducts = async (req, res) => {
+    try {
+        const products = await Product.find().populate('category');
+        res.status(200).send(products);
+    } catch (error) {
+        res.status(500).send({ error: 'Failed to retrieve products', details: error.message });
+    }
+};
+
+// GET - Retrieve a single product by its ID
+exports.getProductById = async (req, res) => {
+    try {
+        const product = await Product.findById(req.params.id).populate('category');
+
+        if (!product) {
+            return res.status(404).send({ error: 'Product not found' });
+        }
+
+        res.status(200).send(product);
+    } catch (error) {
+        res.status(500).send({ error: 'Failed to retrieve product', details: error.message });
+    }
 };

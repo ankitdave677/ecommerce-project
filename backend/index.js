@@ -20,9 +20,16 @@ app.use(express.json());
 app.use('/api/categories', categoryRoutes);
 app.use('/api/products', productRoutes);
 
-
 // Serve static files from the "uploads" directory
 app.use('/uploads', express.static('uploads'));
+
+// Connect to MongoDB
+mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+.then(() => console.log('Connected to MongoDB'))
+.catch(err => console.error('Failed to connect to MongoDB', err));
 
 // Start the server
 app.listen(port, () => {

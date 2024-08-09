@@ -67,6 +67,7 @@ exports.deleteCategory = async (req, res) => {
 // FETCH PRODUCTS BY CATEGORY - Retrieve all products in a specific category
 exports.getProductsByCategory = async (req, res) => {
     const { id } = req.params;
+    console.log(id);
     try {
         const products = await Product.find({ category: id });
         res.status(200).send(products);

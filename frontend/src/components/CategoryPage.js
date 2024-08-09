@@ -4,19 +4,20 @@ import axios from 'axios';
 import './CategoryPage.css';
 
 function CategoryPage() {
-    const { categoryId } = useParams();
+    const { id } = useParams();
+    console.log(useParams());
     const [category, setCategory] = useState({});
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        axios.get(`${process.env.REACT_APP_BASE_URL}/api/categories/${categoryId}`)
+        axios.get(`${process.env.REACT_APP_BASE_URL}/api/categories/${id}`)
             .then(response => setCategory(response.data))
             .catch(error => console.error('Error fetching category:', error));
-
-        axios.get(`${process.env.REACT_APP_BASE_URL}/api/products?category=${categoryId}`)
+            //            http://localhost:3001/api/categories/66a29074724ae190c00fdaef/products
+        axios.get(`${process.env.REACT_APP_BASE_URL}/api/categories/${id}/products`)
             .then(response => setProducts(response.data))
             .catch(error => console.error('Error fetching products:', error));
-    }, [categoryId]);
+    }, [id]);
 
     return (
         <div className="category-page">
