@@ -251,6 +251,10 @@ The product should be removed from the database and should no longer appear on t
 
 ---------------------------------------------------------------------------------------------------------------------------------------
 
+# Video Demonstration
+
+## YouTube video link: https://youtu.be/lTtv7Fvb2QM
+
 # GitHub Repository
 
 **GitHub Repo Link:** [ecommerce-project](https://github.com/ankitdave677/ecommerce-project)
