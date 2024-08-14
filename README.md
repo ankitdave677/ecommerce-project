@@ -98,6 +98,156 @@ PORT=5000
 - \`AdminLogin.js\`: Allows admin to login using credentials.
 - \`AdminDashboard.js\`: Admin can view, add, edit, and delete products and categories.
 
+---------------------------------------------------------------------------------------------------------------------------------------
+
+# Test Cases
+
+### 1. Test Case: Display Products on Homepage
+
+**Steps to Perform:**
+1. Navigate to the homepage (`/`).
+2. Observe the list of featured products.
+
+**Expected Result:**
+All featured products should be displayed on the homepage with their name, description, price, and image.
+
+**Actual Result:**
+![Featured Products](./Screenshots/Feature%20Products.png)
+---
+
+### 2. Test Case: Add Product to Cart
+
+**Steps to Perform:**
+1. Navigate to the homepage.
+2. Click on a product to view its details.
+3. Click the "Add to Cart" button.
+
+**Expected Result:**
+The product should be added to the cart, and navigate directly to the Cart page.
+
+**Actual Result:**
+![Add to Cart](./Screenshots/Shopping%20Cart.png)
+
+
+---
+
+### 3. Test Case: Remove Product from Cart
+
+**Steps to Perform:**
+1. Add a product to the cart.
+2. Navigate to the cart page (`/cart`).
+3. Click the "Remove From Cart" button next to the product.
+
+**Expected Result:**
+The product should be removed from the cart, and the cart total should update accordingly.
+
+**Actual Result:**
+![Remove from Cart](./Screenshots/RemoveFromCart.png)
+
+---
+
+### 4. Test Case: Checkout Process
+
+**Steps to Perform:**
+1. Add products to the cart.
+2. Navigate to the cart page and click "Proceed to Checkout."
+3. Fill in the checkout form with user and payment information.
+
+**Expected Result:**
+The order summary page should display the order number, items purchased, and total price.
+
+**Actual Result:**
+![Order Summary](./Screenshots/OrderSummary.png)
+---
+
+### 5. Test Case: Display Categories on Homepage
+
+**Steps to Perform:**
+1. Navigate to the homepage.
+2. Observe the list of product categories.
+
+**Expected Result:**
+All categories should be displayed as clickable buttons, each leading to a page displaying products in that category.
+
+**Actual Result:**
+![Categories](./Screenshots/Categories.png)
+
+---
+
+### 6. Test Case: Filter Products by Category
+
+**Steps to Perform:**
+1. Click on a category from the homepage.
+2. Observe the list of products displayed for that category.
+
+**Expected Result:**
+Only products belonging to the selected category should be displayed.
+
+**Actual Result:**
+![Filter By Categories](./Screenshots/FIlterByCategories.png)
+
+---
+
+### 7. Test Case: Place Order
+
+**Steps to Perform:**
+1. Add products to the cart.
+2. Navigate to the cart page and click "Proceed to Checkout."
+3. Fill in the checkout form with user and payment information.
+4. Click the "Place Order" button.
+
+**Expected Result:**
+User should be able to place order without any error and redirected to the thank you page.
+
+**Actual Result:**
+![Place Order](./Screenshots/PlaceOrder.png)
+
+---
+
+### 8. Test Case: Create New Product in Admin Dashboard
+
+**Steps to Perform:**
+1. Log in to the admin dashboard.
+2. Navigate to the "Add Product" page.
+3. Fill in the product details and upload an image.
+4. Click the "Add Product" button.
+
+**Expected Result:**
+The new product should be added to the product list and should be visible on the frontend.
+
+**Actual Result:**
+![Add New Product](./Screenshots/AddNewProduct.png)
+
+---
+
+### 9. Test Case: Edit Existing Product in Admin Dashboard
+
+**Steps to Perform:**
+1. Log in to the admin dashboard.
+2. Navigate to the "Product List" page.
+3. Click the "Edit" button next to an existing product.
+4. Update the product details and click "Save."
+
+**Expected Result:**
+The product details should be updated in the database and reflected on the frontend. As you can see in the below image, the price of the product updated.
+
+**Actual Result:**
+![Update Product](./Screenshots/UpdateProduct.png)
+
+---
+
+### 10. Test Case: Delete Product from Admin Dashboard
+
+**Steps to Perform:**
+1. Log in to the admin dashboard.
+2. Navigate to the "Product List" page.
+3. Click the "Delete" button next to an existing product.
+
+**Expected Result:**
+The product should be removed from the database and should no longer appear on the frontend.
+
+**Actual Result:**
+![Delete Product](./Screenshots/DeleteProduct.png)
 
 ---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -110,5 +260,3 @@ PORT=5000
 # Visual Representation of Database Schema
 
 ![Database Schema](./DatabaseSchema.png)
-
----------------------------------------------------------------------------------------------------------------------------------------
